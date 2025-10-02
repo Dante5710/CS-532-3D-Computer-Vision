@@ -71,7 +71,7 @@ def generate_camera_poses(object_center, viewing_distance, num_frames):
         cam_z = viewing_distance * np.sin(angle)
         cam_pos = np.array([[cam_x], [0], [cam_z]])
 
-        # --- look-at matrix (corrected orientation) ---
+        # --- look-at matrix ---
         forward = (object_center - cam_pos).flatten()
         forward /= np.linalg.norm(forward)
         up = np.array([0, 1, 0], dtype=float)
@@ -79,7 +79,6 @@ def generate_camera_poses(object_center, viewing_distance, num_frames):
         right /= np.linalg.norm(right)
         up = np.cross(forward, right)
 
-        # ✅ FIX: use +forward (not -forward)
         R = np.vstack([right, up, forward])
         t = -R @ cam_pos
         poses.append((R, t))
