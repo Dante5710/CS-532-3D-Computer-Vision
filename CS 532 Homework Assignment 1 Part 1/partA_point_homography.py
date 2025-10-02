@@ -101,8 +101,6 @@ class HomographyDLTPoints:
         self.warp_image(H, output_dimensions)
 
 if __name__ == "__main__":
-    # Make sure you have an 'images/input' directory with this file
-    # or change the path to your image file.
     input_file = "images/input/basketball-court.ppm"
     if os.path.exists(input_file):
         HomographyDLTPoints(input_file).run()
